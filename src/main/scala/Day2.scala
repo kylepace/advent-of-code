@@ -2,7 +2,19 @@ object Day2 {
   private val additionCode = 1
   private val terminalCode = 99
 
+  def generateIntCode(noun: Int, verb: Int, codes: List[Int]): List[Int] =
+    intCode(codes.updated(1, noun).updated(2, verb))
+
+  def findOutput(output: Int, codes: List[Int]): (Int, Int) = {
+    val rangesToCheck = generateTestPairs(100)
+    rangesToCheck.map(r =>  (r._1, r._2, generateIntCode(r._1, r._2, codes).head)).filter(i => i._3 == output).map(r => (r._1, r._2)).head
+  }
+
   def intCode(codes: List[Int]): List[Int] = intcode_h(codes, 0)
+
+  private def generateTestPairs(max: Int): Seq[(Int, Int)] =
+    for (i <- 0 until max; j <- 0 until max)
+      yield (i, j)
 
   private def op(opcode: Int) = (x: Int, y: Int) =>
     if (opcode == additionCode) x + y

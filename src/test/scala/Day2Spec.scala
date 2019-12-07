@@ -41,10 +41,18 @@ class Day2Spec extends FlatSpec {
     val intcodes = day2File.getLines.mkString.split(",").map(_.toInt).toList
     day2File.close
 
-    // replace as per instructions
-    val replacedCodes = intcodes.updated(1, 12).updated(2, 2)
-
-    val result = Day2.intCode(replacedCodes)
+    val result = Day2.generateIntCode(12, 2, intcodes)
     assert(result.head == 4930687)
+  }
+
+  "calculate part 2 solution" should "return correct noun verb tuple" in {
+    val day2File = Source.fromURL(getClass.getResource("Day2Input.txt"))
+    val intcodes = day2File.getLines.mkString.split(",").map(_.toInt).toList
+    day2File.close
+
+    val result = Day2.findOutput(19690720, intcodes)
+    assert(result._1 == 53)
+    assert(result._2 == 35)
+    assert((100 * result._1 + result._2) == 5335)
   }
 }
