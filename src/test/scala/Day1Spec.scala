@@ -16,7 +16,7 @@ class Day1Spec extends FlatSpec {
     val day1File = Source.fromURL(getClass.getResource("Day1Input.txt"))
     val moduleMasses = day1File.getLines().map(s => s.toInt).toList
     val expectedValue = 3391707
-    day1File.close()
+    day1File.close
 
     assert(Day1.calculateFullFuelRequirements(moduleMasses) == expectedValue)
   }
@@ -31,7 +31,7 @@ class Day1Spec extends FlatSpec {
     val day1File = Source.fromURL(getClass.getResource("Day1Input.txt"))
     val moduleMasses = day1File.getLines().map(s => s.toInt).toList
     val expectedValue = 5084676
-    day1File.close()
+    day1File.close
 
     assert(Day1.calculateTotalFullFuelRequirements(moduleMasses) == expectedValue)
   }
