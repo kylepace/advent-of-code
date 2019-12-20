@@ -64,4 +64,20 @@ class Day3Spec extends FlatSpec {
 
     assert(result == 529)
   }
+
+  "calculate step distance" should "return fewest steps to intersection" in {
+    val firstWire = Day3.placeWires(List("R8", "U5", "L5", "D3"))
+    val secondWire = Day3.placeWires(List("U7", "R6", "D4", "L4"))
+
+    assert(Day3.getFewestSteps(firstWire, secondWire) == 30)
+  }
+
+  "calculate step distance" should "return my personal puzzle results" in {
+    val day3File = Source.fromURL(getClass.getResource("Day3Input.txt"))
+    val wires = day3File.getLines().map(s => s.split(',').toList).toList
+    val firstWire = Day3.placeWires(wires.head)
+    val secondWire = Day3.placeWires(wires.last)
+
+    assert(Day3.getFewestSteps(firstWire, secondWire) == 30)
+  }
 }

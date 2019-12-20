@@ -18,6 +18,12 @@ object Day3 {
   def getManhattanDistance(firstWire: Vector[Point], secondWire: Vector[Point]): Int =
     firstWire.intersect(secondWire).map(x => Math.abs(x.x - 0) + Math.abs(x.y - 0)).min
 
+  def getFewestSteps(firstWire: Vector[Point], secondWire: Vector[Point]): Int =
+    firstWire
+      .intersect(secondWire)
+      .map(i => firstWire.indexOf(i) + 1 + secondWire.indexOf(i) + 1)
+      .min
+
   private def placeWires_h(instructions: List[String], start: Point): Vector[Point] = instructions match {
     case Nil => Vector.empty
     case h :: t =>
